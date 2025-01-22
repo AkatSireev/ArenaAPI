@@ -1,0 +1,8 @@
+name: ArenaAPI
+version: 1.0
+main: net.akat.ArenaAPI
+authors: [ 2FORWORD2 ]
+commands:
+  arenaapi:
+    description: Arena admin command
+    permission: arenaapi.admin
