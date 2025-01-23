@@ -25,6 +25,11 @@ public final class ArenaAPI extends JavaPlugin {
         registerCommandsAndListeners();
     }
 
+    @Override
+    public void onDisable() {
+        arenaManager.removerStartup();
+    }
+
 
     // Геттеры
     public static ArenaAPI getInstance() {
@@ -57,7 +62,7 @@ public final class ArenaAPI extends JavaPlugin {
 
     private void initializeArenaManager() {
         arenaManager = new FileArenaManager();
-        arenaManager.removerStartup();
+        //arenaManager.removerStartup();
     }
 
     private void registerCommandsAndListeners() {
