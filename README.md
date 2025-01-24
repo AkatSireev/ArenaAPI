@@ -25,16 +25,7 @@
 Добавьте зависимость в ваш `pom.xml`:
 
 ```xml
-<repository>
-    <id>jitpack.io</id>
-    <url>https://jitpack.io</url>
-</repository>
 
-<dependency>
-    <groupId>com.github.AkatSireev</groupId>
-    <artifactId>ArenaAPI</artifactId>
-    <version>8cd1b3f</version>
-</dependency>
 ```
 
 ---
