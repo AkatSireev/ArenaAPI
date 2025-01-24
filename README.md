@@ -33,7 +33,7 @@
 <dependency>
     <groupId>com.github.AkatSireev</groupId>
     <artifactId>ArenaAPI</artifactId>
-    <version>8c120c5c</version>
+    <version>8cd1b3f</version>
 </dependency>
 ```
 
