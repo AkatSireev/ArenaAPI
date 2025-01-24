@@ -73,7 +73,6 @@ public class ArenaCommand implements CommandExecutor, TabCompleter {
                 if (!ar.isPresent()) return;
 
                 ArenaAPI.getInstance().getArenaManager().resetArena(ar.get());
-                sender.sendMessage(ChatColor.GREEN + "Арена сброшена");
                 sender.sendMessage(ChatColor.GREEN + "Арена перезагружена");
             } else {
                 sender.sendMessage("Не найдено: " + arena);

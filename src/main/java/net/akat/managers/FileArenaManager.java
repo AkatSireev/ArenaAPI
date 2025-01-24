@@ -6,6 +6,7 @@ import net.akat.events.ArenaCreateEvent;
 import net.akat.events.ArenaRemoveEvent;
 import net.akat.events.ArenaResetEvent;
 import net.akat.util.FileUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 
@@ -15,8 +16,6 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public class FileArenaManager implements ArenaManager {
-
-    public static ArrayList<String> ARENA_LIST = new ArrayList<>();
 
     protected File mapsFolder;
 
@@ -39,9 +38,6 @@ public class FileArenaManager implements ArenaManager {
 
     @Override
     public void resetArena(Arena arena) {
-
-        ARENA_LIST.remove(arena.getWorld().getName());
-
         if (arena.getWorld() != null) ArenaAPI.getInstance().getServer().unloadWorld(arena.getWorld(), false);
         if (arena.getActiveWorldFolder() != null) FileUtil.delete(arena.getActiveWorldFolder());
 
@@ -79,7 +75,6 @@ public class FileArenaManager implements ArenaManager {
                 arena.setWorld(w);
                 arena.setActiveWorldFolder(file);
 
-                ARENA_LIST.add(key);
                 Arena.ARENA_LIST.add(arena);
 
                 ArenaAPI.getInstance().getLogger().info("Арена создана!");
@@ -114,8 +109,6 @@ public class FileArenaManager implements ArenaManager {
 
                 arena.setWorld(w);
                 arena.setActiveWorldFolder(file);
-
-                ARENA_LIST.add(key);
 
                 Arena.ARENA_LIST.add(arena);
 
@@ -166,6 +159,11 @@ public class FileArenaManager implements ArenaManager {
     public void removerStartup() {
         Arrays.stream(ArenaAPI.getInstance().getServer().getWorldContainer().listFiles()).forEach(file -> {
             if (file.isDirectory() && file.canWrite() && file.getName().startsWith("NEFT")) {
+                World world = Bukkit.getWorld(file.getName());
+                if (world != null) {
+                    Bukkit.unloadWorld(world, true);
+                }
+
                 FileUtil.delete(file);
             }
         });
